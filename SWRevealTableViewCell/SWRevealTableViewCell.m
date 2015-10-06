@@ -545,6 +545,10 @@ static const CGFloat OverDrawWidth = 60;
         if (item.font) {
             button.titleLabel.font = item.font;
         }
+        if (item.borderEdge && item.borderColor && item.borderThickness) {
+            CALayer *borderLayer = [self _addBorderToEdge:item.borderEdge color:item.borderColor thickness:item.borderThickness];
+            [button.layer addSublayer:borderLayer];
+        }
         button.item = item;
         
         // Depending on actual item properties, we configure the button to make the best of it
@@ -601,6 +605,34 @@ static const CGFloat OverDrawWidth = 60;
     *views = nil;
 }
 
+
+- (CALayer *)_addBorderToEdge:(UIRectEdge)edge color:(UIColor *)color thickness:(CGFloat)thickness
+{
+    CALayer *border = [CALayer layer];
+    
+    switch (edge) {
+        case UIRectEdgeTop:
+            border.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), thickness);
+            break;
+        case UIRectEdgeBottom:
+            border.frame = CGRectMake(0, CGRectGetHeight(self.frame) - thickness, CGRectGetWidth(self.frame), thickness);
+            break;
+        case UIRectEdgeLeft:
+            border.frame = CGRectMake(0, 0, thickness, CGRectGetHeight(self.frame));
+            break;
+        case UIRectEdgeRight:
+            border.frame = CGRectMake(CGRectGetWidth(self.frame) - thickness, 0, thickness, CGRectGetHeight(self.frame));
+            break;
+        default:
+            break;
+    }
+    
+    border.backgroundColor = color.CGColor;
+    
+    [self.layer addSublayer:border];
+    
+    return border;
+}
 
 - (void)_layoutViewsForNewPosition:(SWCellRevealPosition)newPosition location:(CGFloat)xLocation
 {

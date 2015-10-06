@@ -85,6 +85,7 @@
 @property(nonatomic) UIColor *backgroundColor;   // default is nil
 @property(nonatomic) UIColor *tintColor;         // default is nil
 @property(nonatomic) NSString *title;            // default is nil
+@property(nonatomic) UIFont *font;
 @property(nonatomic) UIVisualEffect *visualEffect;
 
 @end

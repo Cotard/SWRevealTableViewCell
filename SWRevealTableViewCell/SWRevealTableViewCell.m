@@ -542,6 +542,9 @@ static const CGFloat OverDrawWidth = 60;
         button.frame = utilityButtonView.bounds;
         button.titleLabel.numberOfLines = 0;
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        if (item.font) {
+            button.titleLabel.font = item.font;
+        }
         button.item = item;
         
         // Depending on actual item properties, we configure the button to make the best of it

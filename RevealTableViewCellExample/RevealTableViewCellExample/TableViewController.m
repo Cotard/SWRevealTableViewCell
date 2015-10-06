@@ -9,7 +9,7 @@
 #import "TableViewController.h"
 #import "SWRevealTableViewCell.h"
 
-@interface TableViewController ()<SWRevealTableViewCellDelegate,SWRevealTableViewCellDataSource,UIActionSheetDelegate>
+@interface TableViewController ()<SWRevealTableViewCellDelegate, SWRevealTableViewCellDataSource,UIActionSheetDelegate>
 {
     NSIndexPath *_revealingCellIndexPath;
     NSInteger _sectionTitleRowCount;
@@ -317,6 +317,7 @@ static NSString *RevealCellReuseIdentifier = @"RevealCellReuseIdentifier";
         item1.backgroundColor = [UIColor redColor];
         item1.tintColor = [UIColor whiteColor];
         item1.width = 75;
+        item1.font = [UIFont fontWithName:@"Baskerville" size:20.0];
     
         SWCellButtonItem *item2 = [SWCellButtonItem itemWithTitle:@"Open box" handler:^(SWCellButtonItem *item, SWRevealTableViewCell *cell)
         {
